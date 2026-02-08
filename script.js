@@ -1,3 +1,14 @@
+// Preloader
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    setTimeout(() => {
+        preloader.classList.add('fade-out');
+        setTimeout(() => {
+            preloader.style.display = 'none';
+        }, 800);
+    }, 2000);
+});
+
 // ===== NAVIGATION =====
 const navbar = document.getElementById('navbar');
 const navMenu = document.getElementById('navMenu');
@@ -63,7 +74,7 @@ let typingSpeed = 100;
 
 function typeEffect() {
     const currentPhrase = phrases[phraseIndex];
-    
+
     if (isDeleting) {
         typingText.textContent = currentPhrase.substring(0, charIndex - 1);
         charIndex--;
@@ -187,15 +198,15 @@ const formStatus = document.querySelector('.form-status');
 if (contactForm && formStatus) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(contactForm);
         const submitBtn = contactForm.querySelector('.btn-submit');
         const originalHTML = submitBtn.innerHTML;
-        
+
         // Disable button
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<span>Sending...</span>';
-        
+
         try {
             const response = await fetch(contactForm.action, {
                 method: 'POST',
@@ -204,7 +215,7 @@ if (contactForm && formStatus) {
                     'Accept': 'application/json'
                 }
             });
-            
+
             if (response.ok) {
                 formStatus.innerHTML = '<p class="success">✅ Message sent successfully! I\'ll get back to you soon.</p>';
                 contactForm.reset();
@@ -214,11 +225,11 @@ if (contactForm && formStatus) {
         } catch (error) {
             formStatus.innerHTML = '<p class="error">❌ Network error. Please try again later.</p>';
         }
-        
+
         // Re-enable button
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalHTML;
-        
+
         // Clear status after 5 seconds
         setTimeout(() => {
             formStatus.innerHTML = '';
@@ -288,7 +299,7 @@ window.addEventListener('mousemove', (e) => {
     const orbs = document.querySelectorAll('.gradient-orb');
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
-    
+
     orbs.forEach((orb, index) => {
         const speed = (index + 1) * 20;
         const xMove = (x - 0.5) * speed;
@@ -352,17 +363,17 @@ themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     sunIcon.classList.toggle('hidden');
     moonIcon.classList.toggle('hidden');
-    
+
     // Save preference
     const theme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
     localStorage.setItem('theme', theme);
-    
+
     // Add animation effect
     themeToggle.style.transform = 'scale(0.9) rotate(180deg)';
     setTimeout(() => {
         themeToggle.style.transform = 'scale(1) rotate(0deg)';
     }, 300);
-    
+
     // Trigger confetti effect on theme change
     createThemeChangeEffect();
 });
@@ -391,15 +402,15 @@ function createThemeChangeEffect() {
         particle.style.zIndex = '10000';
         particle.style.transition = 'all 0.8s ease-out';
         document.body.appendChild(particle);
-        
+
         const angle = (Math.PI * 2 * i) / 20;
         const velocity = 50 + Math.random() * 50;
-        
+
         setTimeout(() => {
             particle.style.transform = `translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px)`;
             particle.style.opacity = '0';
         }, 10);
-        
+
         setTimeout(() => {
             particle.remove();
         }, 800);
@@ -423,12 +434,12 @@ class Ripple {
         this.speed = 3;
         this.opacity = 1;
     }
-    
+
     update() {
         this.radius += this.speed;
         this.opacity = 1 - (this.radius / this.maxRadius);
     }
-    
+
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -444,14 +455,14 @@ function addRipple(x, y) {
 
 function animateRipples() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     ripples = ripples.filter(ripple => ripple.radius < ripple.maxRadius);
-    
+
     ripples.forEach(ripple => {
         ripple.update();
         ripple.draw();
     });
-    
+
     requestAnimationFrame(animateRipples);
 }
 
@@ -482,17 +493,17 @@ tiltElements.forEach(element => {
         const rect = element.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         const rotateX = (y - centerY) / 10;
         const rotateY = (centerX - x) / 10;
-        
+
         element.style.setProperty('--tilt-x', `${rotateX}deg`);
         element.style.setProperty('--tilt-y', `${rotateY}deg`);
     });
-    
+
     element.addEventListener('mouseleave', () => {
         element.style.setProperty('--tilt-x', '0deg');
         element.style.setProperty('--tilt-y', '0deg');
@@ -507,10 +518,10 @@ magneticButtons.forEach(button => {
         const rect = button.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        
+
         button.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
     });
-    
+
     button.addEventListener('mouseleave', () => {
         button.style.transform = 'translate(0, 0)';
     });
@@ -519,7 +530,7 @@ magneticButtons.forEach(button => {
 // ===== PARALLAX EFFECT FOR SECTIONS =====
 window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
-    
+
     document.querySelectorAll('.parallax-section').forEach((section, index) => {
         const speed = (index + 1) * 0.05;
         const offset = scrolled * speed;
@@ -538,13 +549,13 @@ document.addEventListener('touchstart', (e) => {
 
 document.addEventListener('touchmove', (e) => {
     if (!touchStartX || !touchStartY) return;
-    
+
     const touchEndX = e.touches[0].clientX;
     const touchEndY = e.touches[0].clientY;
-    
+
     const diffX = touchStartX - touchEndX;
     const diffY = touchStartY - touchEndY;
-    
+
     // Swipe detection (optional - can be used for navigation)
     if (Math.abs(diffX) > Math.abs(diffY)) {
         if (diffX > 50) {
@@ -565,11 +576,11 @@ if (window.DeviceMotionEvent) {
         const x = acceleration.x;
         const y = acceleration.y;
         const z = acceleration.z;
-        
+
         const deltaX = Math.abs(x - lastX);
         const deltaY = Math.abs(y - lastY);
         const deltaZ = Math.abs(z - lastZ);
-        
+
         if (deltaX > shakeThreshold || deltaY > shakeThreshold || deltaZ > shakeThreshold) {
             // Shake detected - add fun animation
             document.body.style.animation = 'shake 0.5s';
@@ -577,7 +588,7 @@ if (window.DeviceMotionEvent) {
                 document.body.style.animation = '';
             }, 500);
         }
-        
+
         lastX = x;
         lastY = y;
         lastZ = z;
