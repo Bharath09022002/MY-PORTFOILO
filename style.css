@@ -955,6 +955,7 @@ body.light-mode .form-group textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
     transition: opacity 0.4s ease;
 }
 
