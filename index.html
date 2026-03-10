@@ -11,9 +11,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicon/devicon@latest/devicon.min.css">
+    
+    <!-- Premium Animation & Scroll Libraries -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
 </head>
 
 <body>
@@ -76,10 +82,13 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div>
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 20px;">
+                <div class="theme-customizer">
+                    <label for="accentColorPicker" class="color-picker-label" title="Customize Theme Color">🎨</label>
+                    <input type="color" id="accentColorPicker" value="#8b5cf6">
+                </div>
                 <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
@@ -92,325 +101,178 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero-gradient-overlay"></div>
         </div>
         <div class="container hero-content">
-            <div class="hero-text">
-                <p class="hero-greeting fade-in">Hi there, I'm</p>
-                <h1 class="hero-name fade-in-up">
-                    <span class="name-highlight">Bharath Parthipan</span>
+            <div class="hero-text-wrapper">
+                <p class="hero-greeting">Creative Developer</p>
+                <h1 class="hero-title-massive">
+                    <span class="line-1">Bharath</span><br>
+                    <span class="line-2">Parthipan</span>
                 </h1>
-                <h2 class="hero-title fade-in-up">
-                    <span class="typing-text"></span>
-                    <span class="cursor">|</span>
-                </h2>
-                <p class="hero-description fade-in-up">
-                    Building real-world applications with the MERN stack.<br>
-                    Focused on clean code, strong backend logic, and user-friendly interfaces.
-                </p>
-                <div class="hero-cta fade-in-up">
-                    <a href="#projects" class="btn btn-primary btn-magnetic">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary btn-magnetic">Get In Touch</a>
-                </div>
-                <div class="hero-social fade-in-up">
-                    <a href="https://github.com/Bharath09022002" target="_blank" rel="noopener" class="social-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path
-                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                            </path>
-                        </svg>
-                    </a>
-                    <a href="https://in.linkedin.com/in/bharathparthipan" target="_blank" rel="noopener"
-                        class="social-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                            </path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                    <a href="mailto:bharath.parthiban.official@gmail.com" class="social-link">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                            </path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-image fade-in">
-                <div class="image-wrapper">
-                    <div class="image-glow"></div>
-                    <!-- 3D Rotating Cube -->
-                    <div class="cube-container">
-                        <div class="cube">
-                            <div class="cube-face front">MERN</div>
-                            <div class="cube-face back">Stack</div>
-                            <div class="cube-face right">Dev</div>
-                            <div class="cube-face left">Code</div>
-                            <div class="cube-face top">Code</div>
-                            <div class="cube-face bottom">Build</div>
+                <div class="hero-bottom-info">
+                    <p class="hero-description">
+                        Building premium digital experiences with the MERN stack.<br> Focused on clean code, strong logic, and Awwwards-winning interfaces.
+                    </p>
+                    <div class="hero-cta-group">
+                        <div class="hero-cta">
+                            <a href="#projects" class="btn btn-primary btn-magnetic">View Work</a>
+                            <a href="#contact" class="btn btn-secondary btn-magnetic">Contact</a>
                         </div>
-                    </div>
-                    <div class="code-snippet">
-                        <div class="code-header">
-                            <span class="code-dot"></span>
-                            <span class="code-dot"></span>
-                            <span class="code-dot"></span>
+                        <div class="hero-social">
+                            <a href="https://github.com/Bharath09022002" target="_blank" rel="noopener" class="social-link btn-magnetic">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                            <a href="https://in.linkedin.com/in/bharathparthipan" target="_blank" rel="noopener" class="social-link btn-magnetic">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </a>
                         </div>
-                        <pre class="code-content"><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
-  <span class="code-property">name</span>: <span class="code-string">'Bharath'</span>,
-  <span class="code-property">role</span>: <span class="code-string">'MERN Stack Dev'</span>,
-  <span class="code-property">location</span>: <span class="code-string">'Tamil Nadu'</span>,
-  <span class="code-property">passion</span>: <span class="code-string">'Building Apps'</span>
-};</code></pre>
                     </div>
                 </div>
             </div>
         </div>
         <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
+            <p class="scroll-text">Scroll to explore</p>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about section">
+    <section id="about" class="section bento-section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header fade-in-up">
                 <span class="section-tag">Get To Know Me</span>
-                <h2 class="section-title">About Me</h2>
+                <h2 class="section-title">Who I Am</h2>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p class="about-description">
-                        I'm a passionate <strong>Junior MERN Stack Developer</strong> focused on building real-world
-                        applications
-                        with clean code, strong backend logic, and user-friendly interfaces.
-                    </p>
-                    <p class="about-description">
-                        Currently based in <strong>Tiruppur, Tamil Nadu</strong>, I hold a Master's degree in Computer
-                        Applications (MCA)
-                        and specialize in full-stack JavaScript development using MongoDB, Express.js, React.js, and
-                        Node.js.
-                    </p>
-                    <p class="about-description">
-                        I love solving complex problems, learning new technologies, and creating applications that make
-                        a difference.
-                        When I'm not coding, you'll find me exploring the latest web development trends and contributing
-                        to open-source projects.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <h3 class="stat-number" data-target="3">0</h3>
-                            <p class="stat-label">Projects Completed</p>
+            
+            <div class="bento-grid">
+                <!-- Bento Item: Bio (Takes up 2 columns) -->
+                <div class="bento-box bento-large fade-in-up">
+                    <div class="bento-content">
+                        <h3>About Me</h3>
+                        <p>I'm a passionate <strong>MERN Stack Developer</strong> based in <strong>Tiruppur, Tamil Nadu</strong>. I focus on creating digital products that are not only performant and secure but also visually striking and immersive.</p>
+                        <h4 style="margin-top: 15px; color: var(--primary-light); font-size: 16px;">Education</h4>
+                        <ul style="list-style: none; margin-top: 5px; color: var(--text-secondary); font-size: 15px; line-height: 1.6;">
+                            <li><strong style="color: var(--text-primary);">MCA</strong> – RVS College of Arts and Science</li>
+                            <li><strong style="color: var(--text-primary);">BCA</strong> – RVS College of Arts and Science</li>
+                            <li><strong style="color: var(--text-primary);">Schooling</strong> – Kongu Vellalar Hr Sec School, Angeri Palayam</li>
+                        </ul>
+                    </div>
+                    <div class="bento-glow"></div>
+                </div>
+
+                <!-- Bento Item: Stats -->
+                <div class="bento-box bento-stats fade-in-up">
+                    <div class="bento-content stat-group">
+                        <div class="stat">
+                            <h4 class="stat-number" data-target="3">0</h4>
+                            <span>Projects</span>
                         </div>
-                        <div class="stat-item">
-                            <h3 class="stat-number" data-target="8">0</h3>
-                            <p class="stat-label">Technologies</p>
+                        <div class="stat">
+                            <h4 class="stat-number" data-target="8">0</h4>
+                            <span>Tech Stack</span>
                         </div>
-                        <div class="stat-item">
-                            <h3 class="stat-number" data-target="100">0</h3>
-                            <p class="stat-label">Commits This Year</p>
+                        <div class="stat">
+                            <h4 class="stat-number" data-target="100">0</h4>
+                            <span>Commits</span>
                         </div>
                     </div>
+                    <div class="bento-glow"></div>
                 </div>
-                <div class="about-image">
-                    <div class="about-card">
-                        <div class="card-glow"></div>
-                        <div class="card-content">
-                            <div class="info-item">
-                                <span class="info-icon">📍</span>
-                                <div>
-                                    <p class="info-label">Location</p>
-                                    <p class="info-value">Tiruppur, Tamil Nadu</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-icon">🎓</span>
-                                <div>
-                                    <p class="info-label">Education</p>
-                                    <p class="info-value">MCA Graduate</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-icon">💼</span>
-                                <div>
-                                    <p class="info-label">Role</p>
-                                    <p class="info-value">MERN Stack Developer</p>
-                                </div>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-icon">🚀</span>
-                                <div>
-                                    <p class="info-label">Status</p>
-                                    <p class="info-value">Open to Opportunities</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-
-
-    <section id="skills" class="skills section">
+    <section id="skills" class="section bento-section" style="padding-top: 0;">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">My Arsenal</span>
-                <h2 class="section-title">Skills & Technologies</h2>
-                <p class="section-description">
-                    A curated list of technologies I use to build scalable and performant applications.
-                </p>
+            <div class="section-header fade-in-up">
+                <span class="section-tag">Expertise</span>
+                <h2 class="section-title">My Skills & Tools</h2>
             </div>
-
-            <div class="skills-showcase">
-                <!-- Frontend -->
-                <div class="skill-category-card" data-tilt>
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="16 18 22 12 16 6"></polyline>
-                                <polyline points="8 6 2 12 8 18"></polyline>
-                            </svg>
-                        </div>
+            
+            <div class="bento-grid">
+                <!-- Bento Item: Frontend Skills -->
+                <div class="bento-box bento-skills fade-in-up">
+                    <div class="bento-content">
                         <h3>Frontend</h3>
-                    </div>
-                    <div class="tech-grid">
-                        <div class="tech-item" title="HTML5">
-                            <i class="devicon-html5-plain colored"></i>
-                            <span>HTML5</span>
-                        </div>
-                        <div class="tech-item" title="CSS3">
-                            <i class="devicon-css3-plain colored"></i>
-                            <span>CSS3</span>
-                        </div>
-                        <div class="tech-item" title="JavaScript">
-                            <i class="devicon-javascript-plain colored"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="tech-item" title="React">
-                            <i class="devicon-react-original colored"></i>
-                            <span>React</span>
-                        </div>
-                        <div class="tech-item" title="Tailwind">
-                            <i class="devicon-tailwindcss-original colored"></i>
-                            <span>Tailwind</span>
+                        <div class="skills-mini-grid">
+                            <div class="skill-pill"><i class="devicon-react-original colored"></i> React</div>
+                            <div class="skill-pill"><i class="devicon-tailwindcss-original colored"></i> Tailwind</div>
+                            <div class="skill-pill"><i class="devicon-javascript-plain colored"></i> JS</div>
+                            <div class="skill-pill"><i class="devicon-html5-plain colored"></i> HTML5</div>
+                            <div class="skill-pill"><i class="devicon-flutter-plain colored"></i> Flutter</div>
                         </div>
                     </div>
+                    <div class="bento-glow"></div>
                 </div>
 
-                <!-- Backend -->
-                <div class="skill-category-card" data-tilt>
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
-                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
-                                <line x1="6" y1="6" x2="6.01" y2="6"></line>
-                                <line x1="6" y1="18" x2="6.01" y2="18"></line>
-                            </svg>
-                        </div>
+                <!-- Bento Item: Backend Skills -->
+                <div class="bento-box bento-skills fade-in-up">
+                    <div class="bento-content">
                         <h3>Backend</h3>
-                    </div>
-                    <div class="tech-grid">
-                        <div class="tech-item" title="Node.js">
-                            <i class="devicon-nodejs-plain colored"></i>
-                            <span>Node.js</span>
-                        </div>
-                        <div class="tech-item" title="Express">
-                            <i class="devicon-express-original"></i>
-                            <span>Express</span>
-                        </div>
-                        <div class="tech-item" title="MongoDB">
-                            <i class="devicon-mongodb-plain colored"></i>
-                            <span>MongoDB</span>
-                        </div>
-                        <div class="tech-item" title="Firebase">
-                            <i class="devicon-firebase-plain colored"></i>
-                            <span>Firebase</span>
+                        <div class="skills-mini-grid">
+                            <div class="skill-pill"><i class="devicon-nodejs-plain colored"></i> Node.js</div>
+                            <div class="skill-pill"><i class="devicon-express-original"></i> Express</div>
+                            <div class="skill-pill"><i class="devicon-mongodb-plain colored"></i> MongoDB</div>
+                            <div class="skill-pill"><i class="devicon-firebase-plain colored"></i> Firebase</div>
                         </div>
                     </div>
+                    <div class="bento-glow"></div>
                 </div>
 
-                <!-- Tools & Others -->
-                <div class="skill-category-card" data-tilt>
-                    <div class="category-header">
-                        <div class="category-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="2" y1="12" x2="22" y2="12"></line>
-                                <path
-                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                                </path>
-                            </svg>
-                        </div>
+                <!-- Bento Item: Tools -->
+                <div class="bento-box bento-tools fade-in-up">
+                    <div class="bento-content">
                         <h3>Tools</h3>
-                    </div>
-                    <div class="tech-grid">
-                        <div class="tech-item" title="Git">
-                            <i class="devicon-git-plain colored"></i>
-                            <span>Git</span>
-                        </div>
-                        <div class="tech-item" title="GitHub">
-                            <i class="devicon-github-original"></i>
-                            <span>GitHub</span>
-                        </div>
-                        <div class="tech-item" title="VS Code">
-                            <i class="devicon-vscode-plain colored"></i>
-                            <span>VS Code</span>
-                        </div>
-                        <div class="tech-item" title="Postman">
-                            <i class="devicon-postman-plain colored"></i>
-                            <span>Postman</span>
+                        <div class="skills-mini-grid">
+                            <div class="skill-pill"><i class="devicon-git-plain colored"></i> Git</div>
+                            <div class="skill-pill"><i class="devicon-github-original"></i> GitHub</div>
+                            <div class="skill-pill"><i class="devicon-vscode-plain colored"></i> VSCode</div>
                         </div>
                     </div>
+                    <div class="bento-glow"></div>
+                </div>
+                
+                <!-- Bento Item: Location/Status -->
+                <div class="bento-box bento-status fade-in-up">
+                    <div class="bento-content status-wrapper">
+                        <div class="status-indicator">
+                            <div class="pulse-dot"></div>
+                            <p>Open for Work</p>
+                        </div>
+                        <p class="location-text">📍 Tiruppur</p>
+                    </div>
+                    <div class="bento-glow"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects section">
-        <div class="container">
-            <div class="section-header">
+    <!-- Projects Section (Horizontal Scroll) -->
+    <section id="projects" class="projects-horizontal-section">
+        <div class="projects-header-sticky">
+            <div class="container">
                 <span class="section-tag">My Work</span>
                 <h2 class="section-title">Featured Projects</h2>
             </div>
-            <div class="projects-grid">
-                <div class="project-card" data-tilt>
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Bharath09022002" target="_blank" class="project-link">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg>
-                                    Code
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-bg project-bg-1"></div>
+        </div>
+        
+        <div class="horizontal-scroll-container">
+            <div class="horizontal-scroll-track" id="projects-track">
+                <!-- Project 1 -->
+                <div class="horizontal-project-card">
+                    <div class="h-project-image">
+                       <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop" alt="CMS">
+                       <div class="h-project-overlay">
+                           <a href="https://github.com/Bharath09022002" target="_blank" class="h-project-btn">View Code</a>
+                       </div>
                     </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Complaint Management System</h3>
-                        <p class="project-description">
-                            A comprehensive complaint tracking system with role-based authentication (Admin, Staff,
-                            User),
-                            JWT security, and real-time dashboards for efficient complaint resolution.
-                        </p>
+                    <div class="h-project-info">
+                        <h3>Complaint Management System</h3>
+                        <p>A comprehensive complaint tracking system with role-based authentication (Admin, Staff, User), JWT security, and real-time dashboards for efficient complaint resolution.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">MongoDB</span>
@@ -421,29 +283,17 @@
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Bharath09022002" target="_blank" class="project-link">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg>
-                                    Code
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-bg project-bg-2"></div>
+                <!-- Project 2 -->
+                <div class="horizontal-project-card">
+                    <div class="h-project-image">
+                       <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2190&auto=format&fit=crop" alt="Library">
+                       <div class="h-project-overlay">
+                           <a href="https://github.com/Bharath09022002" target="_blank" class="h-project-btn">View Code</a>
+                       </div>
                     </div>
-                    <div class="project-content">
-                        <h3 class="project-title">College Library Application</h3>
-                        <p class="project-description">
-                            A full-featured library management system with separate Admin and User modules,
-                            complete book catalog management, and streamlined issue/return workflows.
-                        </p>
+                    <div class="h-project-info">
+                        <h3>College Library Application</h3>
+                        <p>A full-featured library management system with separate Admin and User modules, complete book catalog management, and streamlined issue/return workflows.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">MongoDB</span>
@@ -453,29 +303,17 @@
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="https://github.com/Bharath09022002" target="_blank" class="project-link">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path
-                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
-                                        </path>
-                                    </svg>
-                                    Code
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-bg project-bg-3"></div>
+                <!-- Project 3 -->
+                <div class="horizontal-project-card">
+                    <div class="h-project-image">
+                       <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070&auto=format&fit=crop" alt="Payment">
+                       <div class="h-project-overlay">
+                           <a href="https://github.com/Bharath09022002" target="_blank" class="h-project-btn">View Code</a>
+                       </div>
                     </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Canteen Payment System</h3>
-                        <p class="project-description">
-                            A digital payment solution for campus canteens featuring secure login,
-                            wallet balance management, and seamless order processing for students and staff.
-                        </p>
+                    <div class="h-project-info">
+                        <h3>Canteen Payment System</h3>
+                        <p>A digital payment solution for campus canteens featuring secure login, wallet balance management, and seamless order processing for students and staff.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Node.js</span>
                             <span class="tech-tag">MongoDB</span>
@@ -484,31 +322,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Education Section -->
-    <section id="education" class="education section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">My Journey</span>
-                <h2 class="section-title">Education</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2020 - 2023</div>
-                        <h3 class="timeline-title">Master of Computer Applications</h3>
-                        <p class="timeline-subtitle">MCA</p>
-                        <p class="timeline-description">
-                            Specialized in full-stack development, database management, and software engineering
-                            principles.
-                            Built multiple real-world projects using the MERN stack.
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
