@@ -475,6 +475,7 @@ body.light-mode .form-group textarea:focus {
     justify-content: center;
     height: 100vh;
     width: 100%;
+    padding-top: 250px; /* Clear the fixed navbar */
 }
 
 .hero-text-wrapper {
@@ -486,7 +487,7 @@ body.light-mode .form-group textarea:focus {
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-top: -5vh; /* Shifts everything up slightly so it perfectly centers visually but clears the bottom indicator */
+    margin-top: 0;
 }
 
 .hero-greeting {
